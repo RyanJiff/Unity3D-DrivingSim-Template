@@ -13,6 +13,7 @@ public class VehicleController : MonoBehaviour
     Vehicle vehicleIn = null;
     Camera playerCamera = null;
     private Vector3 exitPosition = Vector3.zero;
+    private Vector3 velocity = Vector3.zero;
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class VehicleController : MonoBehaviour
             //move with car
             transform.position = vehicleIn.transform.position;
             //move camera with car
-            MoveCamera();
+            MoveCamera(vehicleIn.transform);
             vehicleIn.SendInputs(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"),0);
         }
         //if we have no vehicle to control tell the playercontroller to go back into FPS mode and tell him where we want to be
@@ -63,9 +64,10 @@ public class VehicleController : MonoBehaviour
     /// <summary>
     /// Make player camera follow car
     /// </summary>
-    public void MoveCamera()
+    public void MoveCamera(Transform target)
     {
-        playerCamera.transform.position = vehicleIn.transform.position - vehicleIn.transform.forward * 7.5f + vehicleIn.transform.up * 3f;
-        playerCamera.transform.LookAt(vehicleIn.transform);
+        Vector3 targetPos = vehicleIn.transform.position - vehicleIn.transform.forward * 7.5f + vehicleIn.transform.up * 3f;
+        playerCamera.transform.position = targetPos;
+        playerCamera.transform.LookAt(vehicleIn.transform.position + vehicleIn.transform.up*2);
     }
 }
