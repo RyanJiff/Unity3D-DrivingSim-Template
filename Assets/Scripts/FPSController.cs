@@ -51,11 +51,7 @@ public class FPSController : MonoBehaviour
         //move while controller is active
         Move();
 
-        //try to enter vehicle if E is pressed
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            EnterVehicle();   
-        }
+        //interact with item
         if (Input.GetKeyDown(KeyCode.F))
         {
             Interact();

@@ -11,6 +11,9 @@ public class Vehicle : MonoBehaviour
     [SerializeField] float brake = 500f;
     [SerializeField] float maxSteerAngle = 35f;
 
+    //transforms
+    [SerializeField] Transform centerOfMass = null;
+
     //Declaring Controller Vars
     private float _input_horizontal = 0.0f;
     private float _input_vertical = 0.0f;
@@ -20,6 +23,18 @@ public class Vehicle : MonoBehaviour
     [SerializeField] WheelCollider[] steeringWheels = null;
     [SerializeField] WheelCollider[] powerWheels = null;
     [SerializeField] WheelCollider[] brakeWheels = null;
+
+    private Rigidbody rb = null;
+
+    private void Start()
+    {
+        if(centerOfMass != null)
+        {
+            rb = GetComponent<Rigidbody>();
+            rb.centerOfMass = centerOfMass.localPosition;
+        }
+    }
+
 
     private void Update()
     {
@@ -59,6 +74,5 @@ public class Vehicle : MonoBehaviour
         _input_horizontal = horizontal;
         _input_vertical = vertical;
         _input_brake = brake;
-
     }
 }

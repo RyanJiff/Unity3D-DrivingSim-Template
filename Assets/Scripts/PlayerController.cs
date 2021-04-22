@@ -70,6 +70,10 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        else if (o.GetComponent<Vehicle>())
+        {
+            EnterVehicle(o);
+        }
         else
         {
             Debug.Log("Interacted with " + o.name);

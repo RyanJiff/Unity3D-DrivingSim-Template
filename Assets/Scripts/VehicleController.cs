@@ -24,8 +24,8 @@ public class VehicleController : MonoBehaviour
 
     private void Update()
     {
-        //exit vehicle if E is pressed and brake
-        if (Input.GetKeyDown(KeyCode.E))
+        //exit vehicle if F is pressed and brake
+        if (Input.GetKeyDown(KeyCode.F))
         {
             vehicleIn.SendInputs(0, 0, 1);
             exitPosition = transform.position + (-vehicleIn.transform.right * 2) + (vehicleIn.transform.up * 1f);
@@ -41,6 +41,7 @@ public class VehicleController : MonoBehaviour
             //move camera with car
             MoveCamera(vehicleIn.transform);
             vehicleIn.SendInputs(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"),0);
+            Debug.Log("KMPH: " + vehicleIn.GetComponent<Rigidbody>().velocity.magnitude * 3.6f);
         }
         //if we have no vehicle to control tell the playercontroller to go back into FPS mode and tell him where we want to be
         else
