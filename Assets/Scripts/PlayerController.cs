@@ -2,6 +2,7 @@
 
 [RequireComponent(typeof(FPSController))]
 [RequireComponent(typeof(VehicleController))]
+[RequireComponent(typeof(GUIController))]
 public class PlayerController : MonoBehaviour
 {
     /// <summary>
@@ -78,5 +79,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Interacted with " + o.name);
         }
+    }
+
+    /// <summary>
+    /// returns player control mode
+    /// </summary>
+    public ControlMode GetPlayerMode()
+    {
+        return controlMode;
     }
 }
